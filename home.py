@@ -25,7 +25,7 @@ st.set_page_config(
 # Load data
 df = pd.read_csv("Dataset.csv")
 
-# Build node and successors dicationary for pass it to the graph
+# Build node and successors dictionary to pass it to the graph
 
 world_dict = {}
 for source_airport in list(df["SourceAirport"].unique()):
@@ -42,7 +42,7 @@ for source_airport in list(df["SourceAirport"].unique()):
 # Instantiate Undirected Graph
 world_map = UndirectedGraph(world_dict)
 
-# Locations in Latitude, Longitude and Altitude for calculate Heuristac function
+# Locations in Latitude, Longitude and Altitude for calculating Heuristic function
 locations_dict = {}
 for nod in list(df["SourceAirport"].unique()):
     nod_df = df[df["SourceAirport"] == nod][
@@ -64,25 +64,6 @@ for nod in list(df["DestinationAirport"].unique()):
 
 # Pass a new attribute locations
 world_map.locations = locations_dict
-
-# Locations in Latitude and Longitude for Visualiztion
-locations_2d_dict = {}
-for nod in list(df["SourceAirport"].unique()):
-    nod_df = df[df["SourceAirport"] == nod][
-        ["SourceAirport_Latitude", "SourceAirport_Longitude"]
-    ]
-    locations_2d_dict.update({nod: tuple(nod_df.iloc[0])})
-
-# Handle all Airpots locations -- sources and destinations
-for nod in list(df["DestinationAirport"].unique()):
-    nod_df = df[df["DestinationAirport"] == nod][
-        ["DestinationAirport_Latitude", "DestinationAirport_Longitude"]
-    ]
-    if nod not in locations_2d_dict.keys():
-        locations_2d_dict.update({nod: tuple(nod_df.iloc[0])})
-
-# Pass a new attribute locations_2d
-world_map.locations_2d = locations_2d_dict
 
 
 # --------------------------------------------------------------------------------------------------------------------------#
@@ -136,7 +117,7 @@ distination_airPort = st.sidebar.selectbox(
     ),
 )
 
-# Pass intial and goal states  -----------------------------------------------------Our Games and filter here
+# Pass initial and goal states  -----------------------------------------------------Our Games and filter here
 airport_intial = source_airPort
 airport_goal = distination_airPort
 # Instantiate Our Problem
@@ -163,15 +144,15 @@ path_states = []
 for node in breadth_node.path():
     path_states.append(node.state)
 
-lat_list = [world_map.locations_2d[state][0] for state in path_states]
-lon_list = [world_map.locations_2d[state][1] for state in path_states]
+lat_list = [world_map.locations[state][0] for state in path_states]
+lon_list = [world_map.locations[state][1] for state in path_states]
 
 path_fig = draw_path(lat_list, lon_list)
 
 # Greedy best-first search is accomplished by specifying f(n) = h(n)
 greedy_best_first_graph_search = best_first_graph_search
 
-algorithms_elapsed_times = {"breadth first": elapsed_time}
+algorithms_elapsed_times = {"breadth-first": elapsed_time}
 search_algorthms = {
     "depth first": depth_first_graph_search,
     "depth limited": depth_limited_search,
@@ -194,8 +175,8 @@ for name, search in search_algorthms.items():
     for node in search_node.path():
         path_states.append(node.state)
 
-    lat_list = [world_map.locations_2d[state][0] for state in path_states]
-    lon_list = [world_map.locations_2d[state][1] for state in path_states]
+    lat_list = [world_map.locations[state][0] for state in path_states]
+    lon_list = [world_map.locations[state][1] for state in path_states]
 
     path_fig = add_trace_path(path_fig, lat_list, lon_list, name)
 
