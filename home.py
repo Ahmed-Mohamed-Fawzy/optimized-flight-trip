@@ -80,24 +80,24 @@ source_country = st.sidebar.selectbox(
 )
 source_city = st.sidebar.selectbox(
     "City",
-    sorted(list(
+    list(
         df[df["SourceAirport_Country"] == source_country]["SourceAirport_City"].unique()
-    )),
+    ),
 )
 source_airPort = st.sidebar.selectbox(
     "Airport",
-    sorted(list(
+    list(
         df[
             (df["SourceAirport_Country"] == source_country)
             & (df["SourceAirport_City"] == source_city)
         ]["SourceAirport"].unique()
-    )),
+    ),
 )
 
 # Distination Location
 st.sidebar.subheader("Provide your destination location:")
 distination_country = st.sidebar.selectbox(
-    "Country", sorted(list(df["DestinationAirport_Country"].unique()))
+    "Country", sorted(list(df["DestinationAirport_Country"].unique()),reverse=True)
 )
 distination_city = st.sidebar.selectbox(
     "City",
