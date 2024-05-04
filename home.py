@@ -101,11 +101,11 @@ distination_country = st.sidebar.selectbox(
 )
 distination_city = st.sidebar.selectbox(
     "City",
-    sorted(list(
+    list(
         df[df["DestinationAirport_Country"] == distination_country][
             "DestinationAirport_City"
         ].unique()
-    )),
+    ),
 )
 distination_airPort = st.sidebar.selectbox(
     "Airport",
