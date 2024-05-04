@@ -95,7 +95,7 @@ source_airPort = st.sidebar.selectbox(
 )
 
 # Distination Location
-st.sidebar.subheader("Provide your distination location:")
+st.sidebar.subheader("Provide your destination location:")
 distination_country = st.sidebar.selectbox(
     "Country", list(df["DestinationAirport_Country"].unique())
 )
