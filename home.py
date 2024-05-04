@@ -76,45 +76,45 @@ st.sidebar.header("Find The Best Flight Path")
 # Source Location
 st.sidebar.subheader("Provide your current location:")
 source_country = st.sidebar.selectbox(
-    "Country", list(df["SourceAirport_Country"].unique()).sort()
+    "Country", sorted(list(df["SourceAirport_Country"].unique()))
 )
 source_city = st.sidebar.selectbox(
     "City",
-    list(
+    sorted(list(
         df[df["SourceAirport_Country"] == source_country]["SourceAirport_City"].unique()
-    ).sort(),
+    )),
 )
 source_airPort = st.sidebar.selectbox(
     "Airport",
-    list(
+    sorted(list(
         df[
             (df["SourceAirport_Country"] == source_country)
             & (df["SourceAirport_City"] == source_city)
         ]["SourceAirport"].unique()
-    ).sort(),
+    )),
 )
 
 # Distination Location
 st.sidebar.subheader("Provide your destination location:")
 distination_country = st.sidebar.selectbox(
-    "Country", list(df["DestinationAirport_Country"].unique()).sort()
+    "Country", sorted(list(df["DestinationAirport_Country"].unique()))
 )
 distination_city = st.sidebar.selectbox(
     "City",
-    list(
+    sorted(list(
         df[df["DestinationAirport_Country"] == distination_country][
             "DestinationAirport_City"
         ].unique()
-    ).sort(),
+    )),
 )
 distination_airPort = st.sidebar.selectbox(
     "Airport",
-    list(
+    sorted(list(
         df[
             (df["DestinationAirport_Country"] == distination_country)
             & (df["DestinationAirport_City"] == distination_city)
         ]["DestinationAirport"].unique()
-    ).sort(),
+    )),
 )
 
 # Pass initial and goal states  -----------------------------------------------------Our Games and filter here
