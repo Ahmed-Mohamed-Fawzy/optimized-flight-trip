@@ -109,12 +109,12 @@ distination_city = st.sidebar.selectbox(
 )
 distination_airPort = st.sidebar.selectbox(
     "Airport",
-    sorted(list(
+    list(
         df[
             (df["DestinationAirport_Country"] == distination_country)
             & (df["DestinationAirport_City"] == distination_city)
         ]["DestinationAirport"].unique()
-    )),
+    ),
 )
 
 # Pass initial and goal states  -----------------------------------------------------Our Games and filter here
