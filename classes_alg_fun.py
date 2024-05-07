@@ -385,7 +385,7 @@ def astar_search(problem, h=None, display=False):
 
 # Visualization---------------------------------------------------------------------------------------------------#
 # Draw the path solution for the problem
-def draw_path(lat_list, lon_list):
+def draw_path(lat_list, lon_list,name=None):
     fig = go.Figure(
         go.Scattermapbox(
             mode="markers+lines", lon=lon_list, lat=lat_list,name=name,text=name, marker={"size": 10}
