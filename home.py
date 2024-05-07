@@ -163,18 +163,18 @@ if btn:
     lat_list = [world_map.locations[state][0] for state in path_states]
     lon_list = [world_map.locations[state][1] for state in path_states]
 
-    path_fig = draw_path(lat_list, lon_list)
+    path_fig = draw_path(lat_list, lon_list,"Breadth First")
 
     # Greedy best-first search is accomplished by specifying f(n) = h(n)
     greedy_best_first_graph_search = best_first_graph_search
 
-    algorithms_elapsed_times = {"breadth first": elapsed_time}
+    algorithms_elapsed_times = {"Breadth First": elapsed_time}
     search_algorthms = {
-        "depth first": depth_first_graph_search,
-        "depth limited": depth_limited_search,
-        "iterative deepening": iterative_deepening_search,
-        "uniform cost": uniform_cost_search,
-        "greedy": greedy_best_first_graph_search,
+        "Depth First": depth_first_graph_search,
+        "Depth Limited": depth_limited_search,
+        "Iterative Deepening": iterative_deepening_search,
+        "Uniform Cost": uniform_cost_search,
+        "Greedy": greedy_best_first_graph_search,
         "A*": astar_search,
     }
 
