@@ -388,7 +388,7 @@ def astar_search(problem, h=None, display=False):
 def draw_path(lat_list, lon_list):
     fig = go.Figure(
         go.Scattermapbox(
-            mode="markers+lines", lon=lon_list, lat=lat_list, marker={"size": 10}
+            mode="markers+lines", lon=lon_list, lat=lat_list,name=name,text=name, marker={"size": 10}
         )
     )
 
@@ -412,6 +412,7 @@ def add_trace_path(fig, lat_list, lon_list, name=None):
             mode="markers+text+lines",
             lon=lon_list,
             lat=lat_list,
+            name=name,
             text=name,
             marker={"size": 10},
         )
